@@ -21,7 +21,7 @@ export default function SignUpPage(){
             email,
             password
         }
-        const request = axios.post('http://127.0.0.1:5000/signup',body);
+        const request = axios.post('https://projeto13-mywallet-back-1.herokuapp.com/signup',body);
         request.then(()=> {
             setLoading(false);
             navigate("/");

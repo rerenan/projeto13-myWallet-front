@@ -33,12 +33,12 @@ export default function HomePage() {
     }, [wallet])
 
     function sendStatus(config){
-        const request = axios.post('http://localhost:5000/status',{},config);
+        const request = axios.post('https://projeto13-mywallet-back-1.herokuapp.com/status',{},config);
             request.then(()=>{})
     }
     function getMyWallet(config) {
      
-        const promise = axios.get('http://localhost:5000/mywallet', config)
+        const promise = axios.get('https://projeto13-mywallet-back-1.herokuapp.com/mywallet', config)
         promise.then((res) => {
             setWallet(res.data.wallet);
             setName(res.data.name);

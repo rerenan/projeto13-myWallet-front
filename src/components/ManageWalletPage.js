@@ -23,7 +23,7 @@ export default function ManageWalletPage({ operation }) {
             }
         }
         
-        const request = axios.post("http://localhost:5000/account", body, config);
+        const request = axios.post("https://projeto13-mywallet-back-1.herokuapp.com/account", body, config);
             request.then((res)=>{
                 navigate("/home");
             })
