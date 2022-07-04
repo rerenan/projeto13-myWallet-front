@@ -13,7 +13,7 @@ export default function ManageWalletPage({ operation }) {
     function submitTransactionWallet(e) {
         e.preventDefault();
         const body = {
-            value,
+            value: Number(value),
             description,
             type: operation
         }
