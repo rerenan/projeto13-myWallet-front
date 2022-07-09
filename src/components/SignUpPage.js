@@ -44,9 +44,13 @@ export default function SignUpPage(){
             <form onSubmit={registerUser}>
             <h1>MyWallet</h1>
             <input required type="text" id='name' placeholder='Nome' onChange={ (e)=> setName(e.target.value)} value={name} disabled={loading}/>
+            <br />
             <input required type="email" id='email' placeholder='E-mail' onChange={ (e)=> setEmail(e.target.value)} value={email} disabled={loading}/>
+            <br />
             <input required type="password" id='password' placeholder='Senha' onChange={ (e)=> setPassword(e.target.value)} value={password} disabled={loading}/>
+            <br />
             <input required type="password" id='confirmpassword' placeholder='Confirme a senha' onChange={ (e)=> setConfirmPassword(e.target.value === password)} disabled={loading}/>
+            <br />
             <button disabled={loading}>{contentButton()}</button>
             <Link to="/">Já tem uma conta? Entre agora!</Link>
             </form>
