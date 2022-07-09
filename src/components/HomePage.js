@@ -1,11 +1,13 @@
-import styled from 'styled-components'
-import { useContext, useEffect, useState } from 'react'
+import styled from 'styled-components';
+import { useContext, useEffect, useState } from 'react';
 import axios from 'axios'
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom';
 
-import IconBack from './../assets/imgs/iconback.svg'
-import UserContext from '../contexts/UserContext'
-import Operation from './Operation'
+import backIcon from './../assets/imgs/iconback.svg';
+import plusIcon from '../assets/imgs/plusIcon.svg';
+import minusIcon from '../assets/imgs/minusIcon.svg';
+import UserContext from '../contexts/UserContext';
+import Operation from './Operation';
 
 
 export default function HomePage() {
@@ -14,18 +16,22 @@ export default function HomePage() {
     const [name, setName] = useState("");
     const [balance, setBalance] = useState("");
     const [isPositive, setIsPositive] = useState("");
-    const { token } = useContext(UserContext);
+    const { token, setToken } = useContext(UserContext);
+    const navigate = useNavigate();
     
     useEffect(() => {
-        if (token !== "") {
+        const localToken = localStorage.getItem('token')
+        const tokenAux = localToken? localToken :token;
+        if(!tokenAux) return navigate('/login')
+            setToken(tokenAux);
             const config = {
                 headers: {
-                    Authorization: `${token}`
+                    Authorization: `${tokenAux}`
                 }
             }
             getMyWallet(config);
             setInterval(sendStatus(config),FOUR_MIN)
-        }
+        
     }, [token])
 
     useEffect(() => {
@@ -70,21 +76,25 @@ export default function HomePage() {
             setIsPositive(true)
         }
     }
-
+    function exit(){
+        if(window.confirm("Você realmente quer sair?")){
+            localStorage.removeItem('token')
+            navigate('/login')
+        }
+    }
     return (
         <Page>
             <TopBar>
                 <h2>Olá, {name}</h2>
-                <Link to={'/'}>
-                <img src={IconBack} alt="" />
-                </Link>
+                <img src={backIcon} onClick={()=> exit()} alt="" />
+                
             </TopBar>
             <Wallet balance={isPositive}>
                 {myWallet()}
             </Wallet>
             <Buttons>
-                <Link to={'/novaentrada'}>Nova entrada</Link>
-                <Link to={'/novasaida'}>Nova saída</Link>
+                <Link to={'/novaentrada'}><img src={plusIcon} alt="" />Nova entrada </Link>
+                <Link to={'/novasaida'}><img src={minusIcon} alt="" />Nova saída </Link>
             </Buttons>
         </Page>
     )
@@ -158,13 +168,20 @@ const Buttons = styled.div`
         box-sizing: border-box;
         text-decoration: none;
         display: flex;
+        flex-direction: column;
+        justify-content: space-between;
         padding: 10px;
+        padding-right: 65px;
         color: white;
+        line-height: 20px;
         font-weight: 700;
         font-size: 17px;
         background-color:#A328D6;
         width: 47.5%;
         height: 100%;
         border-radius: 5px;
+        img{
+            width: 26px;
+        }
     }
 `

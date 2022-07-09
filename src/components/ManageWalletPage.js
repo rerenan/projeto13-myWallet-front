@@ -25,7 +25,7 @@ export default function ManageWalletPage({ operation }) {
         
         const request = axios.post("https://projeto13-mywallet-back-1.herokuapp.com/account", body, config);
             request.then((res)=>{
-                navigate("/home");
+                navigate("/");
             })
             request.catch((err)=>{
                 alert(err.response.data);
@@ -37,7 +37,9 @@ export default function ManageWalletPage({ operation }) {
             <h2>Nova {operation === 'debit' ? "saída" : "entrada"}</h2>
             <form onSubmit={submitTransactionWallet}>
                 <input required type="number" placeholder="Valor" onChange={(e) => setValue(e.target.value)} value={value} />
+                <br />
                 <input required type="text" placeholder="Descrição" onChange={(e) => setDescription(e.target.value)} value={description} />
+                <br />
                 <button>Salvar entrada</button>
             </form>
 
