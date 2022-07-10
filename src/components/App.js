@@ -1,5 +1,4 @@
 import { BrowserRouter, Routes, Route } from 'react-router-dom'
-import styled from 'styled-components'
 import { useEffect, useState } from 'react'
 import { GlobalStyle } from '../styles/global-styles'
 import UserContext from '../contexts/UserContext'
@@ -10,6 +9,7 @@ import ManageWalletPage from './ManageWalletPage'
 
 
 export default function App() {
+    
     const [token, setToken] = useState("")
     return (
             <BrowserRouter>

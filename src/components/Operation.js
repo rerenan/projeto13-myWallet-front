@@ -1,4 +1,3 @@
-import dayjs  from 'dayjs'
 import styled from 'styled-components'
 
 export default function Operation({value, description, type, date}){

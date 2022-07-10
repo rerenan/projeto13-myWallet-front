@@ -52,7 +52,7 @@ export default function SignUpPage(){
             <input required type="password" id='confirmpassword' placeholder='Confirme a senha' onChange={ (e)=> setConfirmPassword(e.target.value === password)} disabled={loading}/>
             <br />
             <button disabled={loading}>{contentButton()}</button>
-            <Link to="/">Já tem uma conta? Entre agora!</Link>
+            <Link to="/login">Já tem uma conta? Entre agora!</Link>
             </form>
         </Page>
     )
