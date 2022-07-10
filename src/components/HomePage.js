@@ -41,6 +41,11 @@ export default function HomePage() {
     function sendStatus(config){
         const request = axios.post('https://projeto13-mywallet-back-1.herokuapp.com/status',{},config);
             request.then(()=>{})
+            request.catch(()=>{
+                alert("sessão expirou");
+                localStorage.removeItem("token");
+                window.location.reload();
+            })
     }
     function getMyWallet(config) {
      
