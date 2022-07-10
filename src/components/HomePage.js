@@ -56,7 +56,7 @@ export default function HomePage() {
 
     function myWallet() {
         if (wallet.length > 0) {
-            return <>{wallet.map(({ value, description, type },index) => <Operation key={index} value={value} description={description} type={type} />)}
+            return <>{wallet.map(({ value, description, type , date},index) => <Operation key={index} value={value} description={description} type={type} date={date}/>)}
                 <div className='balance'><h6>SALDO</h6><h5>{balance}</h5></div></>
 
         } else {

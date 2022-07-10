@@ -1,10 +1,9 @@
 import dayjs  from 'dayjs'
 import styled from 'styled-components'
 
-export default function Operation({value, description, type}){
-    const TODAY = dayjs().format("DD/MM")
+export default function Operation({value, description, type, date}){
     return (
-        <Info type={type}><h3><span>{TODAY}</span>{description}</h3><h5 >{value.toFixed(2)}</h5></Info>
+        <Info type={type}><h3><span>{date}</span>{description}</h3><h5 >{value.toFixed(2)}</h5></Info>
     )
 }
 
